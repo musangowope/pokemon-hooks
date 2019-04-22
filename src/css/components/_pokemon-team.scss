@@ -1,0 +1,71 @@
+.pokemon-team {
+  padding: 50px;
+}
+
+.pokemon-team__title {
+  color: white;
+}
+
+.pokemon-team__member {
+  @extend .animated;
+  @extend .fadeInUp;
+  padding: 10px;
+  height: auto;
+  background-color: #e3e3ed;
+  width: 100%;
+  margin-bottom: 5px;
+
+  .footer {
+    text-align: right;
+  }
+
+  .footer__close-btn {
+    color: white;
+    text-transform: uppercase;
+    background-color: #cc0000;
+    border: none;
+  }
+}
+.pokemon-team__member__body {
+  display: flex;
+  flex-flow: nowrap row;
+
+  .sprite-wrapper {
+    //flex-basis: 20%;
+    width: 20%;
+  }
+
+  .sprite-wrapper__sprite {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: rgba(204, 0, 0, 0.51);
+    //display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #ffff;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .info-wrapper {
+    //flex-basis: 20%;
+    width: 30%;
+  }
+
+  .info-wrapper__name {
+    color: #050505;
+    text-transform: uppercase;
+  }
+
+  .info-wrapper__abilities-info {
+    word-break: break-all;
+  }
+
+  .stats-block {
+    //flex-basis: 60%;
+    width: 50%;
+  }
+}

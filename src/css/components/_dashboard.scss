@@ -1,0 +1,43 @@
+.dashboard {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: row nowrap;
+  &__search {
+    display: flex;
+    position: relative;
+    flex-basis: 50%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    &__content {
+      position: relative;
+      z-index: 99;
+      &__title {
+        font-size: 38px;
+        color: white;
+      }
+      &__input-wrapper {
+      }
+
+      &__overlay {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), #050505);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+
+  &__team-wrapper {
+    flex-basis: 50%;
+    height: 100%;
+    background-color: #3b4cca;
+    overflow-y: scroll;
+    //padding: 50px;
+  }
+}

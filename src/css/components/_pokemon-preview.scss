@@ -1,0 +1,29 @@
+.pokemon-preview {
+  @extend .animated;
+  @extend .fadeIn;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  text-align: center;
+  background-color: rgba(5, 5, 5, 0.49);
+  &__name {
+    text-transform: uppercase;
+  }
+
+  &__button {
+    text-transform: uppercase;
+    color: white;
+    border: none;
+  }
+
+  &__button--view-details {
+    @extend .pokemon-preview__button;
+    background-color: #CC0000;
+  }
+
+  &__button--add {
+    @extend .pokemon-preview__button;
+    background-color: #3B4CCA;
+  }
+
+}

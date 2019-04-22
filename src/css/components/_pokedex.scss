@@ -1,0 +1,22 @@
+.pokedex {
+  input {
+    height: 40px;
+    background-color: rgba(59, 76, 202, 0.69);
+    border: none;
+    box-shadow: none;
+    border-radius: 15px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+.pokedex__response-text {
+
+  color: white;
+}

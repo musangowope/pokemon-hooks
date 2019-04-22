@@ -1,0 +1,13 @@
+.pokemon-stat {
+  display: flex;
+  border-bottom: 1px solid #3b4cca;
+  justify-content: space-between;
+  &__title {
+    text-transform: uppercase;
+  }
+
+  &__base-point {
+    color: #CC0000
+  }
+
+}

@@ -1,0 +1,33 @@
+.pokeloader {
+  @extend .animated;
+  @extend .fadeIn;
+  position: fixed;
+  z-index: 999;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(5, 5, 5, 0.71);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    width: 100%;
+    text-align: center;
+    img {
+      @extend .animated;
+      @extend .pulse;
+      @extend .infinite;
+      width: 15%;
+    }
+  }
+
+  &__content__text {
+    color: white;
+    font-size: 3rem;
+  }
+}
