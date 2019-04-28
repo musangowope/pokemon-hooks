@@ -1,18 +1,13 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import PokeLoader from "./PokeLoader";
+import { BaseRequest } from "../constants/BaseRequest";
 
-const BaseRequest = {
-  success: false,
-  loading: false,
-  failed: false
-};
-
-const Pokedex = ({ getPokeData, clearPreviewPokeData }) => {
+const PokeSearch = ({ getPokeData, clearPreviewPokeData }) => {
   const [requestState, setRequestState] = useState({ ...BaseRequest });
-  const inputRef = useRef();
+  const inputRef = useRef("");
 
-  const updateState = obj => {
+  const updateRequestSearch = obj => {
     setRequestState({
       ...BaseRequest,
       ...obj
@@ -21,7 +16,7 @@ const Pokedex = ({ getPokeData, clearPreviewPokeData }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    updateState({ loading: true });
+    updateRequestSearch({ loading: true });
     const {
       current: { value }
     } = inputRef;
@@ -30,30 +25,31 @@ const Pokedex = ({ getPokeData, clearPreviewPokeData }) => {
       .get(`https://pokeapi.co/api/v2/pokemon/${value}`)
       .then(res => {
         const { data } = res;
-        updateState({ success: true });
+        updateRequestSearch({ success: true });
         getPokeData(data);
       })
       .catch(e => {
         clearPreviewPokeData();
-        updateState({ failed: true });
+        updateRequestSearch({
+          failed: true,
+          errorMessage: "Could not find pokemon record"
+        });
       });
   };
 
-  const { success, loading, failed } = requestState;
+  const { success, loading, failed, errorMessage } = requestState;
 
   return (
-    <div className="pokedex">
+    <div className="pokesearch">
       <form onSubmit={handleSubmit}>
         <input placeholder="charizard, bayleef, meowth" ref={inputRef} />
         {success && (
-          <div className="pokedex__response-text">Found data in records</div>
+          <div className="pokesearch__response-text">Found data in records</div>
         )}
         {loading && <PokeLoader />}
-        {failed && (
-          <div className="pokedex__response-text">Could not find pokemon</div>
-        )}
+        {failed && <div className="pokesearch__response-text">{errorMessage}</div>}
       </form>
     </div>
   );
 };
-export default Pokedex;
+export default PokeSearch;

@@ -1,0 +1,40 @@
+.ability-information {
+  @extend .animated;
+  @extend .fadeIn;
+  min-height: 100px;
+  background-color: white;
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 50vw;
+  z-index: 999;
+  transition: 0.5s ease-in-out;
+}
+
+.ability-information__close-btn-wrapper {
+  width: 100%;
+  button {
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    height: 100%;
+    display: flex;
+    margin-left: auto;
+    text-transform: uppercase;
+  }
+}
+
+.ability-information__content {
+  padding: 20px;
+
+  .ability-name {
+    color: darkred;
+    text-transform: capitalize;
+  }
+}
+
+
+.ability-information__loader-wrapper {
+  text-align: center;
+  width: 100%;
+}

@@ -1,15 +1,40 @@
 import React, { Fragment, useState } from "react";
 import "./css/styles.scss";
-import Pokedex from "./components/Pokedex";
+import PokeSearch from "./components/PokeSearch";
 import backgroundImg from "./images/background-img.jpg";
 import PokemonPreview from "./components/PokemonPreview";
 import { PokeDataStructure } from "./constants/PokeDataStructure";
 import PokemonTeam from "./components/PokemonTeam";
+import AbilityInfoFinder from "./components/AbilityInfoFinder";
+
+const baseAbilityInfoFinder = {
+  isOpen: false,
+  searchUrl: null
+};
 
 const App = () => {
   const [pokeData, setPokeData] = useState({
     ...PokeDataStructure
   });
+
+  const [abilityFindState, setAbilityFindState] = useState({
+    isOpen: false,
+    searchUrl: null
+  });
+
+  const closeAbilityFinder = () => {
+    setAbilityFindState({
+      ...baseAbilityInfoFinder
+    });
+  };
+
+  const setAbilitySearchUrl = url => {
+    setAbilityFindState({
+      ...abilityFindState,
+      searchUrl: url,
+      isOpen: true
+    });
+  };
 
   const clearPreviewPokeData = () => {
     setPokeData({
@@ -49,6 +74,8 @@ const App = () => {
 
   const { name, stats, abilities, types, sprite, isPokeDataPresent } = pokeData;
 
+  const { searchUrl, isOpen } = abilityFindState;
+
   return (
     <Fragment>
       <div className="dashboard">
@@ -59,7 +86,7 @@ const App = () => {
           <div className="dashboard__search__content">
             <h5 className="dashboard__search__content__title">Pokemon Hooks</h5>
             <div className="dashboard__search__content__input-wrapper">
-              <Pokedex
+              <PokeSearch
                 getPokeData={getPokeData}
                 clearPreviewPokeData={clearPreviewPokeData}
               />
@@ -74,6 +101,7 @@ const App = () => {
                   types={types}
                   sprite={sprite}
                   addToTeam={addToTeam}
+                  searchAbility={setAbilitySearchUrl}
                 />
               </div>
             )}
@@ -82,7 +110,17 @@ const App = () => {
           <div className="dashboard__search__content__overlay" />
         </div>
         <div className="dashboard__team-wrapper">
-          <PokemonTeam pokemonTeam={pokemonTeamState} removeFromTeam={removeFromTeam}/>
+          <PokemonTeam
+            pokemonTeam={pokemonTeamState}
+            removeFromTeam={removeFromTeam}
+          />
+
+          {isOpen && (
+            <AbilityInfoFinder
+              closeAbilityFinder={closeAbilityFinder}
+              abilityUrl={searchUrl}
+            />
+          )}
         </div>
       </div>
     </Fragment>

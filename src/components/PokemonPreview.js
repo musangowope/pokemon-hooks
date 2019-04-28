@@ -8,7 +8,8 @@ const PokemonPreview = ({
   abilities,
   types,
   sprite,
-  addToTeam
+  addToTeam,
+  searchAbility
 }) => {
   return (
     <Fragment>
@@ -18,22 +19,20 @@ const PokemonPreview = ({
           <img src={sprite} alt="pokemon-image" />
         </div>
 
-
         <PokeTypes types={types} />
 
         <div>Abilities</div>
         <div>
           {abilities.map(abilityObj => {
             const {
-              ability: { name }
+              ability: { name, url }
             } = abilityObj;
-            return <button>{name}</button>;
+            return (
+              <button onClick={searchAbility.bind(null, url)}>{name}</button>
+            );
           })}
         </div>
 
-        <button className="pokemon-preview__button--view-details">
-          View Stats
-        </button>
         <button
           className="pokemon-preview__button--add"
           onClick={addToTeam.bind(null, {
@@ -41,7 +40,7 @@ const PokemonPreview = ({
             stats,
             abilities,
             types,
-            sprite,
+            sprite
           })}
         >
           Add to team
@@ -57,7 +56,8 @@ PokemonPreview.propTypes = {
   abilities: PropTypes.array.isRequired,
   types: PropTypes.array.isRequired,
   sprite: PropTypes.string.isRequired,
-  addToTeam: PropTypes.func
+  addToTeam: PropTypes.func,
+  searchAbility: PropTypes.func
 };
 
 export default PokemonPreview;
