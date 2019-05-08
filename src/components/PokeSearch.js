@@ -22,7 +22,7 @@ const PokeSearch = ({ getPokeData, clearPreviewPokeData }) => {
     } = inputRef;
 
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${value}`)
+      .get(`https://pokeapi.co/api/v2/pokemon/${value.toLowerCase()}`)
       .then(res => {
         const { data } = res;
         updateRequestSearch({ success: true });
